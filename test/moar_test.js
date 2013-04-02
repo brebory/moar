@@ -1,6 +1,7 @@
 'use strict';
 
 var moar = require('../lib/moar.js');
+var http = require('http');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -22,15 +23,16 @@ var moar = require('../lib/moar.js');
     test.ifError(value)
 */
 
-exports['awesome'] = {
+exports['moar'] = {
   setUp: function(done) {
     // setup here
     done();
   },
   'no args': function(test) {
-    test.expect(1);
+    test.expect(2);
     // tests here
-    test.equal(moar.awesome(), 'awesome', 'should be awesome.');
+    test.ok(moar.get(), 'should define a get function.');
+    test.ok(moar.search(), 'should define a search function.');
     test.done();
   },
 };
