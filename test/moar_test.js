@@ -1,7 +1,6 @@
 'use strict';
 
 var moar = require('../lib/moar.js');
-var http = require('http');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -28,11 +27,17 @@ exports['moar'] = {
     // setup here
     done();
   },
-  'no args': function(test) {
+  'functions': function(test) {
     test.expect(2);
     // tests here
-    test.ok(moar.get(), 'should define a get function.');
-    test.ok(moar.search(), 'should define a search function.');
+    test.ok(typeof moar.get === "function", 'should define a get function.');
+    test.ok(typeof moar.search === "function", 'should define a search function.');
     test.done();
   },
+  'requests': function(test) {
+    test.expect(2);
+    test.ok(moar.get(), 'should make a request to 4chan\'s api, returning either a json string or an error object.');
+    test.ok(moar.search(), 'should make a request to 4chan\'s api, returning either a json string or an error object.');
+    test.done();
+  }
 };
