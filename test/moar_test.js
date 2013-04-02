@@ -36,8 +36,11 @@ exports['moar'] = {
   },
   'requests': function(test) {
     test.expect(2);
-    test.ok(moar.get(), 'should make a request to 4chan\'s api, returning either a json string or an error object.');
-    test.ok(moar.search(), 'should make a request to 4chan\'s api, returning either a json string or an error object.');
+    var val1, val2;
+    moar.get({"board": "v"}, function(data) { val1 = data; console.log(val1); });
+    console.log(val1);
+    test.ok(val1, 'should make a request to 4chan\'s api, returning either a json string or an error object.');
+    test.ok(val2, 'should make a request to 4chan\'s api, returning either a json string or an error object.');
     test.done();
   }
 };
