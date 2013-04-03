@@ -42,7 +42,7 @@ exports['moar'] = {
     });
   },
   'get exceptions': function(test) {
-    test.expect(2);
+    test.expect(3);
     try {
       moar.get();
     } catch (err) {
@@ -52,6 +52,11 @@ exports['moar'] = {
       moar.get("one", "two", "three");
     } catch (err) {
       test.equal(err.message, "ArgumentError: Wrong number of arguments: 3 for [1 - 2].", "should throw errors on incorrect usage. (too many arguments)");
+    }
+    try {
+      moar.get("wrong", "arguments");
+    } catch (err) {
+      test.equal(err.message, "ArgumentError: Must provide a callback function.", "should throw errors on incorrect usage. (no callback)");
     }
     test.done();
   },
