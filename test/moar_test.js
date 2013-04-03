@@ -41,6 +41,20 @@ exports['moar'] = {
       test.done();
     });
   },
+  'get exceptions': function(test) {
+    test.expect(2);
+    try {
+      moar.get();
+    } catch (err) {
+      test.equal(err.message, "ArgumentError: Wrong number of arguments: 0 for [1 - 2].", "should throw errors on incorrect usage. (too few arguments)"); 
+    }
+    try {
+      moar.get("one", "two", "three");
+    } catch (err) {
+      test.equal(err.message, "ArgumentError: Wrong number of arguments: 3 for [1 - 2].", "should throw errors on incorrect usage. (too many arguments)");
+    }
+    test.done();
+  },
   'search': function(test) {
     test.expect(1);
     moar.search({"board": "v", "term": "pokemon"}, function(data) {
