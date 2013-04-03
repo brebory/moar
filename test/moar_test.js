@@ -34,13 +34,18 @@ exports['moar'] = {
     test.ok(typeof moar.search === "function", 'should define a search function.');
     test.done();
   },
-  'requests': function(test) {
-    test.expect(2);
-    var val1, val2;
-    moar.get({"board": "v"}, function(data) { val1 = data; console.log(val1); });
-    console.log(val1);
-    test.ok(val1, 'should make a request to 4chan\'s api, returning either a json string or an error object.');
-    test.ok(val2, 'should make a request to 4chan\'s api, returning either a json string or an error object.');
-    test.done();
+  'get': function(test) {
+    test.expect(1);
+    moar.get({"board": "v"}, function(data) { 
+      test.ok(data,"should make a request to 4chan\'s API, sending either a json response or an error object to the callback."); 
+      test.done();
+    });
+  },
+  'search': function(test) {
+    test.expect(1);
+    moar.search({"board": "v", "term": "pokemon"}, function(data) {
+      test.ok(data, "should make a request to 4chan\'s API, sending either a json response or an error object to the callback.");
+      test.done();
+    });
   }
 };
