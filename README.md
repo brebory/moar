@@ -5,16 +5,20 @@ node.js wrapper for the 4chan api
 ## Getting Started
 Install the module with: `npm install moar`
 
+Include moar in your application with:
 ```javascript
 var moar = require('moar');
-moar.awesome(); // "awesome"
 ```
 
 ## Documentation
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+```javascript
+moar.get(options, function(data) {
+  // do stuff with returned json
+});
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
