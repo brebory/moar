@@ -1,6 +1,7 @@
 'use strict';
 
-var moar = require('../lib/moar.js');
+var moar = require('../lib/moar.js'),
+    _ = require('lodash');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -37,7 +38,7 @@ exports['moar'] = {
   'get': function(test) {
     test.expect(1);
     moar.get({"board": "v"}, function(data) { 
-      test.ok(data,"should make a request to 4chan\'s API, sending either a json response or an error object to the callback."); 
+      test.ok(_(data).some(function(el) { return el.threads; }) || data.error ,"should make a request to 4chan\'s API, sending either a json response or an error object to the callback."); 
       test.done();
     });
   },
