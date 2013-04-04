@@ -43,22 +43,11 @@ exports['moar'] = {
     });
   },
   'get exceptions': function(test) {
-    test.expect(3);
-    try {
-      moar.get();
-    } catch (err) {
-      test.equal(err.message, "ArgumentError: Wrong number of arguments: 0 for [1 - 2].", "should throw errors on incorrect usage. (too few arguments)"); 
-    }
-    try {
-      moar.get("one", "two", "three");
-    } catch (err) {
-      test.equal(err.message, "ArgumentError: Wrong number of arguments: 3 for [1 - 2].", "should throw errors on incorrect usage. (too many arguments)");
-    }
-    try {
-      moar.get("wrong", "arguments");
-    } catch (err) {
-      test.equal(err.message, "ArgumentError: Must provide a callback function.", "should throw errors on incorrect usage. (no callback)");
-    }
+    test.expect(4);
+    test.throws(moar.get(), "ArgumentError: Wrong number of arguments: 0 for [1 - 2].", "should throw errors on incorrect usage. (too few arguments)");
+    test.throws(moar.get("one", "two", "three"), "ArgumentError: Wrong number of arguments: 3 for [1 - 2].", "should throw errors on incorrect usage. (too many arguments)");
+    test.throws(moar.get("wrong", "arguments"), "ArgumentError: Incorrect usage.", "should throw errors on incorrect usage. (wrong type for callback)");
+    test.throws(moar.get(function() { console.log("hi");}, function(data) { return data; }), "ArgumentError: Incorrect usage.", "should throw errors on incorrect usage. (wrong type for options)");
     test.done();
   },
   'search': function(test) {
