@@ -15,8 +15,12 @@ _(Coming soon)_
 
 ## Examples
 ```javascript
-moar.get(options, function(data) {
-  // do stuff with returned json
+moar.get(options, function(err, data) {
+  if(err) {
+    // handle errors
+  } else {
+    // do stuff with returned json
+  }
 });
 ```
 
