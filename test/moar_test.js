@@ -37,17 +37,17 @@ exports['moar'] = {
   },
   'get': function(test) {
     test.expect(1);
-    moar.get({"board": "v"}, function(data) { 
-      test.ok(_(data).some(function(el) { return el.threads; }) || data.error ,"should make a request to 4chan\'s API, sending either a json response or an error object to the callback."); 
+    moar.get({"board": "v"}, function(error, data) { 
+      test.ok(_(data).some(function(el) { return el.threads; }) || error ,"should make a request to 4chan\'s API, sending either a json response or an error object to the callback."); 
       test.done();
     });
   },
   'get exceptions': function(test) {
     test.expect(4);
-    test.throws(moar.get(), "ArgumentError: Wrong number of arguments: 0 for [1 - 2].", "should throw errors on incorrect usage. (too few arguments)");
-    test.throws(moar.get("one", "two", "three"), "ArgumentError: Wrong number of arguments: 3 for [1 - 2].", "should throw errors on incorrect usage. (too many arguments)");
-    test.throws(moar.get("wrong", "arguments"), "ArgumentError: Incorrect usage.", "should throw errors on incorrect usage. (wrong type for callback)");
-    test.throws(moar.get(function() { console.log("hi");}, function(data) { return data; }), "ArgumentError: Incorrect usage.", "should throw errors on incorrect usage. (wrong type for options)");
+    test.throws(function() { moar.get(); }, "should throw errors on incorrect usage. (too few arguments)");
+    test.throws(function() { moar.get("one", "two", "three"); }, "should throw errors on incorrect usage. (too many arguments)");
+    test.throws(function() { moar.get("wrong", "arguments"); }, "should throw errors on incorrect usage. (wrong type for callback)");
+    test.throws(function() { moar.get(function() { console.log("hi");}, function(data) { return data; }); }, "should throw errors on incorrect usage. (wrong type for options)");
     test.done();
   },
   'search': function(test) {
