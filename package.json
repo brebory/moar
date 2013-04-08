@@ -28,14 +28,14 @@
     "test": "grunt nodeunit"
   },
   "dependencies": {
-    "lodash": "1.1.1",
-    "async": "0.2.6"
+    "lodash": "1.1.1"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+		"async": "0.2.6"
   },
   "keywords": []
 }
