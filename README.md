@@ -14,8 +14,8 @@ var moar = require('moar');
 ```javascript
 moar.get(options, callback)
 ```
-
 Sends a GET request to api.4chan.org as specified by the options hash. 
+
 | **key**         | **value**      | **example**          | **default**  | **description**                               |
 |:----------------|:---------------|:---------------------|:-------------|:----------------------------------------------|
 | `board`         | `string`       | `'tg'`               | `'b'`        | board name to retrive, no wrapping slashes    | 
